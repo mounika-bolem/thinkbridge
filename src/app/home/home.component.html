@@ -1,0 +1,79 @@
+<h1>My Products</h1>
+
+<div style="overflow-x:auto;">   
+    <table>
+        <!-- Headers -->
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Product Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                <th>Quantity</th>                            
+                <th>Additional Information</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <!-- Three placeholder hardcoded rows are added here because of the web service to retrive from db is not implemented
+            The Actual logic is to retrive from webservice and loop it and display which is shown after these hard coded rows.-->     
+            <tr>
+                <td>1</td>
+                <td>Baby Doll</td>
+                <td>Barbie</td>
+                <td>100.00</td>
+                <td>2</td>
+                <td>Gift Item</td>
+                <td>
+                    <button type="button" class="actions" [routerLink]="['/product/update/', 1]">Update</button> &nbsp;
+                    <button type="button" class="actions" (click)="productService.delete(1)">Remove</button>
+                </td>
+            </tr> 
+            <tr>
+                <td>2</td>
+                <td>Pizza</td>
+                <td>Dominos Pizza</td>
+                <td>200.00</td>
+                <td>5</td>
+                <td>Medium Size Hand Tossed</td>
+                <td>
+                    <button type="button" class="actions" [routerLink]="['/product/update/', 2]">Update</button> &nbsp;
+                    <button type="button" class="actions" (click)="productService.delete(2)">Remove</button>
+                </td>
+            </tr> 
+            <tr>
+                <td>3</td>
+                <td>Rice Cooker</td>
+                <td>Prestige Brand</td>
+                <td>1500.00</td>
+                <td>4</td>
+                <td>Gift Item</td>
+                <td>
+                    <button type="button" class="actions" [routerLink]="['/product/update/', 3]">Update</button> &nbsp;
+                    <button type="button" class="actions" (click)="productService.delete(3)">Remove</button>
+                </td>
+            </tr>  
+            <!-- The actual way of reading from webservice conencted to a db and display here by looping the result -->     
+            <tr *ngFor="let product of products">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.price}}</td>
+                <td>{{product.quantity}}</td>
+                <td>{{product.addlInfo}}</td>
+                <!-- Update and Delete Actions -->
+                <td>
+                    <button type="button" class="actions" [routerLink]="['/product/update/', product.id]">Update</button> &nbsp;
+                    <button type="button" class="actions" (click)="productService.delete(product.id)">Remove</button>
+                </td>
+            </tr> 
+        </tbody>
+    </table>
+    <br/>
+    <br/>
+    <!-- New Product creation button -->
+    <button  type="button" [routerLink]="['product/create/']">Create new product</button>
+
+</div>
+
+
